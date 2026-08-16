@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/retenta-app/sw.js', { scope: '/retenta-app/' })})}

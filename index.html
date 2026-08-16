@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Retenta</title>
+    <!--
+      `viewport-fit=cover` lets the page paint into the display cutout and the
+      home-indicator strip; without it iOS letterboxes the app between grey
+      bars. The layout claims that area back safely through the
+      `--safe-*` tokens in `styles/theme/tokens.css`, which wrap
+      `env(safe-area-inset-*)` — values that stay zero until this is set.
+
+      Pinch-zoom stays on. It was disabled here at first to stop a double-tap
+      during a typing drill from zooming the card away, which is a real
+      problem with a fake fix: `touch-action: manipulation` in `reset.css`
+      already removes the double-tap gesture from every control, and turning
+      off zoom for the whole document to solve it would have taken away the
+      one tool a low-vision user has (WCAG 2.1 SC 1.4.4). Every input is set
+      at 16px or larger for the same reason — below that iOS zooms the page
+      on focus, which is the other thing `user-scalable=no` is usually there
+      to paper over.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Tints the iOS status bar to match the page rather than leaving it white on a dark theme; the two values are the `WINDOW_BACKGROUND` pair from `src/shared/theme.ts`. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f1e7" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b150d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Retenta" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!--
+      iOS reads this before the manifest's icon list, and at 180px rather than
+      192: without it "Add to Home Screen" renders a screenshot of the page.
+      No status-bar-style meta on purpose — the default keeps the bar as its
+      own strip tinted by `theme-color` above, where the system picks the text
+      colour. `black-translucent` would run the page under the clock, and on
+      the light theme that is dark text on cream, which iOS renders white.
+    -->
+    <link rel="apple-touch-icon" href="/retenta-app/icons/apple-touch-icon.png" />
+    <script type="module" crossorigin src="/retenta-app/assets/index-BZoHUNZd.js"></script>
+  <link rel="manifest" href="/retenta-app/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/retenta-app/registerSW.js"></script></head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
